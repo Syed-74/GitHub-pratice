@@ -1,23 +1,151 @@
-import React from 'react'
-import './App.css'
+import React, { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Form submitted successfully!");
+    console.log(formData);
+  };
 
   return (
-   <>
-   <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem corrupti eius vitae debitis atque, sunt saepe, perferendis tenetur voluptate a, possimus necessitatibus sed perspiciatis veritatis similique obcaecati ad eum dolores!
-   Reprehenderit, voluptas explicabo? Doloribus, architecto sunt. Illum dolorum, possimus autem vero sed ut tenetur omnis necessitatibus laudantium unde commodi porro, mollitia perferendis eius similique iusto nesciunt itaque architecto voluptatem amet.
-   Temporibus earum ipsum dolorem, nam aliquam soluta eveniet nisi distinctio ea quas deserunt ut nihil animi totam maxime vel omnis magnam numquam error ipsa tempora adipisci. Sunt omnis modi maxime!
-   Voluptatem suscipit labore, possimus repudiandae odit, voluptatum repellendus quis nobis animi odio accusantium? Corporis quas iure, placeat laborum quae iusto voluptates hic itaque, provident, doloribus in perferendis atque. Temporibus, ea.
-   Velit a enim quam facilis officia, dolorum facere laborum dolore rem expedita repudiandae doloribus nulla dolorem, aliquid omnis, quisquam suscipit aliquam debitis ducimus molestias ea impedit cupiditate ipsa autem! Vitae.
-   Sequi id dolor neque vero nulla commodi qui nostrum, temporibus cum totam tempora ex soluta quos laborum. Sequi ipsum eos eveniet odio soluta suscipit, harum aspernatur quia nostrum illo accusamus.
-   Nobis tempore dolores molestiae pariatur soluta eveniet, doloremque distinctio neque nesciunt veritatis voluptatibus exercitationem culpa harum reiciendis officia architecto accusamus nam ullam perferendis? Autem a dolor perferendis, est nemo ipsam?
-   Iste eveniet in autem nisi, enim sed vero laudantium eum? Obcaecati corrupti ipsa sunt nobis? Consectetur quae nihil aspernatur tenetur rem officiis ab iusto architecto. Ea vitae corrupti incidunt laborum.
-   Fugit, aut aspernatur in voluptas optio officia maiores veritatis ad quod reiciendis cum facilis ullam eius consequatur voluptatum quos vero aliquam temporibus voluptatibus praesentium saepe, obcaecati sit? Voluptatum, beatae aperiam!
-   Dicta itaque provident fugit placeat fuga non, eveniet obcaecati repellat, doloremque pariatur vero incidunt quas ad quo perferendis illo, quisquam unde qui a neque animi quis! Unde eveniet molestias asperiores.</h1>
-   </>
-  )
+    <div style={styles.container}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <h2 style={styles.heading}>Contact Us</h2>
+        <p style={styles.description}>
+          Please fill out the form below.
+        </p>
+
+        <label style={styles.label}>Full Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your full name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
+
+        <label style={styles.label}>Email Address</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
+
+        <label style={styles.label}>Phone Number</label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Enter your phone number"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
+
+        <label style={styles.label}>Message</label>
+        <textarea
+          name="message"
+          placeholder="Enter your message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          rows="4"
+          style={styles.textarea}
+        />
+
+        <button type="submit" style={styles.button}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 }
 
-export default App
+const styles = {
+  container: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f1f5f9",
+    padding: "20px",
+    boxSizing: "border-box",
+  },
+  form: {
+    width: "100%",
+    maxWidth: "450px",
+    padding: "30px",
+    backgroundColor: "#ffffff",
+    borderRadius: "12px",
+    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+    boxSizing: "border-box",
+  },
+  heading: {
+    textAlign: "center",
+    color: "#1e293b",
+    marginBottom: "8px",
+  },
+  description: {
+    textAlign: "center",
+    color: "#64748b",
+    marginBottom: "25px",
+  },
+  label: {
+    display: "block",
+    marginBottom: "8px",
+    color: "#334155",
+    fontWeight: "600",
+  },
+  input: {
+    width: "100%",
+    padding: "12px",
+    marginBottom: "18px",
+    border: "1px solid #cbd5e1",
+    borderRadius: "6px",
+    boxSizing: "border-box",
+    fontSize: "14px",
+  },
+  textarea: {
+    width: "100%",
+    padding: "12px",
+    marginBottom: "20px",
+    border: "1px solid #cbd5e1",
+    borderRadius: "6px",
+    boxSizing: "border-box",
+    fontSize: "14px",
+    resize: "vertical",
+  },
+  button: {
+    width: "100%",
+    padding: "13px",
+    backgroundColor: "#2563eb",
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "6px",
+    fontSize: "16px",
+    fontWeight: "600",
+    cursor: "pointer",
+  },
+};
+
+export default App;
